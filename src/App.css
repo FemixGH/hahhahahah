@@ -1,3 +1,5 @@
+/* App.css */
+
 :root {
   --bg-color: #171717;
   --sidebar-bg: #202123;
@@ -208,6 +210,10 @@ body {
   padding: 1rem;
   border-top: 1px solid var(--border-color);
   gap: 0.5rem;
+  position: sticky;
+  bottom: 0;
+  background: var(--bg-color);
+  z-index: 100;
 }
 
 .message-input {
@@ -288,31 +294,100 @@ body {
   opacity: 0.9;
 }
 
-/* Sidebar занимает всю высоту окна и раскладывает шапку + историю чатов по вертикали */
-.sidebar {
-  display: flex;
-  flex-direction: column;
-  height: 100vh; /* или 100% контейнера */
-}
-
-/* История чатов растягивается и при переполнении скроллится */
-.chat-history {
-  flex: 1;            /* занимает всё оставшееся место под шапкой */
-  overflow-y: auto;   /* включаем вертикальную прокрутку */
-  padding: 0.5rem;
-}
-
-/* Необязательно: задайте минимальную/максимальную высоту для чатов, если нужно */
-.chat-item {
-  padding: 0.75rem 1rem;
-}
-
+/* Mobile adaptations */
 @media (max-width: 768px) {
+  .chat-container {
+    flex-direction: column;
+  }
+
   .sidebar {
-    width: 200px;
+    position: fixed;
+    top: 0;
+    left: -260px;
+    width: 260px;
+    height: 100vh;
+    z-index: 1000;
+    transition: left 0.3s;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .sidebar.visible {
+    left: 0;
+  }
+
+  .mobile-menu-button {
+    display: block;
+    position: fixed;
+    top: 10px;
+    left: 10px;
+    z-index: 1100;
+    background: var(--accent-color);
+    border: none;
+    color: var(--text-color);
+    padding: 0.6rem;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+
+  .chat-main {
+    margin-left: 0;
+    width: 100%;
+  }
+
+  .messages-container {
+    padding: 1rem 0.5rem;
   }
 
   .message-content {
     max-width: 90%;
+    padding: 0.8rem;
+    font-size: 14px;
+  }
+
+  .input-container {
+    padding: 0.5rem;
+  }
+
+  .message-input {
+    padding: 0.6rem;
+  }
+
+  .send-button {
+    padding: 0.6rem 1rem;
   }
 }
+
+@media (max-width: 480px) {
+  .auth-form-container {
+    width: 90%;
+    padding: 1rem;
+  }
+
+  .chat-item {
+    padding: 0.6rem;
+    font-size: 14px;
+  }
+
+  .new-chat-button,
+  .logout-button {
+    font-size: 14px;
+    padding: 0.6rem;
+  }
+
+  .overlay-content h3 {
+    font-size: 1.2rem;
+  }
+
+  .overlay-content p {
+    font-size: 14px;
+  }
+
+  .create-first-chat-button {
+    padding: 0.8rem 1.5rem;
+    font-size: 1em;
+  }
+}
+
+
+
