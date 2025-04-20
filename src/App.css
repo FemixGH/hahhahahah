@@ -1,5 +1,3 @@
-/* App.css */
-
 :root {
   --bg-color: #171717;
   --sidebar-bg: #202123;
@@ -8,6 +6,7 @@
   --text-color: #ECECF1;
   --accent-color: #10A37F;
   --border-color: #444654;
+  --hover-color: #3A3B45;
 }
 
 body {
@@ -133,6 +132,11 @@ body {
   border-radius: 4px;
   cursor: pointer;
   font-family: inherit;
+  transition: background-color 0.3s;
+}
+
+.new-chat-button:hover {
+  background-color: var(--hover-color);
 }
 
 .logout-button {
@@ -143,6 +147,11 @@ body {
   border-radius: 4px;
   cursor: pointer;
   font-family: inherit;
+  transition: background-color 0.3s;
+}
+
+.logout-button:hover {
+  background-color: var(--hover-color);
 }
 
 .chat-item {
@@ -155,7 +164,11 @@ body {
 }
 
 .chat-item:hover {
-  background-color: var(--border-color);
+  background-color: var(--hover-color);
+}
+
+.chat-item.active {
+  background-color: var(--accent-color) !important;
 }
 
 .chat-main {
@@ -172,7 +185,6 @@ body {
   padding: 1rem;
 }
 
-/* Теперь все сообщения справа */
 .message {
   display: flex;
   justify-content: flex-end;
@@ -215,23 +227,14 @@ body {
   padding: 0.8rem 1.5rem;
   border-radius: 4px;
   cursor: pointer;
+  transition: background-color 0.3s;
 }
 
-.active {
-  background-color: var(--accent-color) !important;
+.send-button:hover {
+  background-color: var(--hover-color);
 }
 
-@media (max-width: 768px) {
-  .sidebar {
-    width: 200px;
-  }
-  
-  .message-content {
-    max-width: 90%;
-  }
-}
-
-.no-chats-placeholder {
+.loading {
   text-align: center;
   padding: 1rem;
   color: #666;
@@ -251,7 +254,7 @@ body {
 }
 
 .first-chat-overlay:hover {
-  background-color: var(--border-color);
+  background-color: var(--hover-color);
 }
 
 .overlay-content {
@@ -285,7 +288,6 @@ body {
   opacity: 0.9;
 }
 
-
 /* Sidebar занимает всю высоту окна и раскладывает шапку + историю чатов по вертикали */
 .sidebar {
   display: flex;
@@ -297,35 +299,20 @@ body {
 .chat-history {
   flex: 1;            /* занимает всё оставшееся место под шапкой */
   overflow-y: auto;   /* включаем вертикальную прокрутку */
-  /* при желании можно добавить паддинг: */
-  /* padding: 0.5rem; */
+  padding: 0.5rem;
 }
 
 /* Необязательно: задайте минимальную/максимальную высоту для чатов, если нужно */
 .chat-item {
-  /* например, фиксированная высота или отступы */
   padding: 0.75rem 1rem;
 }
-/* Sidebar растягивается по всей высоте */
-.sidebar {
-  display: flex;
-  flex-direction: column;
-  height: 100vh;
-}
 
-/* Список чатов с прокруткой */
-.chat-history {
-  flex: 1;
-  overflow-y: auto;
-  /* при желании: отступы */
-  padding: 0.5rem;
-}
+@media (max-width: 768px) {
+  .sidebar {
+    width: 200px;
+  }
 
-/* Опционально: стили для элементов чата */
-.chat-item {
-  padding: 0.75rem 1rem;
-  cursor: pointer;
-}
-.chat-item.active {
-  background-color: #eee;
+  .message-content {
+    max-width: 90%;
+  }
 }

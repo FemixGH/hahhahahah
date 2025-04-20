@@ -1,5 +1,3 @@
-// ChatsPage.jsx
-
 import React, { useState, useEffect, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from '../axiosInstance';
@@ -55,12 +53,12 @@ const ChatsPage = () => {
   // Загрузка сообщений и сброс ввода при смене чата
   useEffect(() => {
     setInputMessage(''); // Очищаем поле ввода при смене чата
-    
+
     if (!selectedChat) {
       setMessages([]);
       return;
     }
-    
+
     axios
       .get(`/api/chat-messages/${selectedChat.id}?page=0&size=50&sort=timestamp,desc`)
       .then(res => setMessages(res.data.content))
@@ -161,7 +159,7 @@ const ChatsPage = () => {
       {/* Боковая панель */}
       <div className="sidebar">
         <div className="sidebar-header">
-          <h2>DeepSeek</h2>
+          <h2>Твой ФФ</h2>
           {!isChatsLoading && chats.length > 0 && (
             <button onClick={createNewChat} className="new-chat-button">
               + Новый чат
@@ -171,7 +169,7 @@ const ChatsPage = () => {
             Выйти
           </button>
         </div>
-        
+
         <div className="chat-history">
           {chats.map(chat => (
             <div
